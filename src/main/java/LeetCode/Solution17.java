@@ -4,6 +4,9 @@ package LeetCode;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//统计优美子数组
+
 public class Solution17 {
     public int numberOfSubarrays(int[] nums, int k) {
         int sum = 0;

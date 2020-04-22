@@ -3,6 +3,8 @@ package LeetCode;
 
 import java.util.OptionalInt;
 
+//转化成01背包问题
+
 public class Solution16 {
     public int findTargetSumWays(int[] nums, int S) {
         if (nums == null || nums.length == 0) return 0;
@@ -17,7 +19,6 @@ public class Solution16 {
             time+=1;
             for (int i = p; i >= num; i--) {
                 dp[i] += dp[i - num];
-                System.out.println("dp["+i+"] += dp["+(i-num)+"]"+"---->dp["+i+"]="+dp[i]);
             }
             System.out.println("");
         }
