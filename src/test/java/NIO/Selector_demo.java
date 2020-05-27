@@ -76,7 +76,6 @@ public class Selector_demo {
                         sChannel.register(selector, SelectionKey.OP_READ);
                         System.out.println("连接成功");
                     } else if (key.isReadable()) {     ////如果该选择键表示“读取就绪”事件
-                        System.out.println("连接=======》");
                         //获取该选择器上的通道
                         SocketChannel channel = (SocketChannel) key.channel();
                         //读取数据
@@ -85,7 +84,6 @@ public class Selector_demo {
                         while ((len = channel.read(bbf)) > 0) {
                             bbf.flip();
                             System.out.println(new String(bbf.array(), 0, len));
-                            System.out.println("读取成功");
                             bbf.clear();
                         }
                     }

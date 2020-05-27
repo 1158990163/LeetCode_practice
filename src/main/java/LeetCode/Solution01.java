@@ -10,34 +10,40 @@ import java.util.Queue;
 //1.广度搜索
 
 public class Solution01 {
-    public int[][] updateMatrix(int[][] matrix) {
+    public int[][] updteMatrix(int[][] matrix) {
+        Queue<int[]> queue = new LinkedList<>();
         int line = matrix.length;
         int list = matrix[0].length;
-        Queue<int[]> dict = new LinkedList<>();
         for (int i = 0; i < line; i++) {
             for (int j = 0; j < list; j++) {
                 if (matrix[i][j] == 0) {
-                    dict.add(new int[]{i, j});
+                    queue.add(new int[]{i, j});
                 } else {
                     matrix[i][j] = -1;
                 }
             }
         }
-        while (!dict.isEmpty()) {
-            int[] actX = new int[]{-1, 1, 0, 0};
-            int[] actY = new int[]{0, 0, -1, 1};
-            int x = dict.poll()[0];
-            int y = dict.poll()[1];
-            for (int k = 0; k < 4; k++) {
-                int newx = x + actX[k];
-                int newy = y + actY[k];
-                if (newx > 0 && newx < line && newy > 0 && newy < list&&matrix[newx][newy]<0){
-                    matrix[newx][newy]=matrix[x][y]+1;
-                    dict.offer(new int[]{newx,newy});
+
+        int[] C_x = new int[]{-1, 1, 0, 0};
+        int[] C_y = new int[]{0, 0, -1, 1};
+        while (!queue.isEmpty()) {
+            int itemX = queue.peek()[0];
+            int itemY = queue.poll()[1];
+            for (int i = 0; i < 4; i++) {
+                int newX = itemX + C_x[i];
+                int newY = itemY + C_y[i];
+                if (newX >= 0 && newX < line && newY >= 0 && newY < list && matrix[newX][newY] < 0) {
+                    matrix[newX][newY] = matrix[itemX][itemY] + 1;
+                    queue.add(new int[]{newX, newY});
                 }
             }
 
         }
         return matrix;
     }
+
+    public static void main(String[] args) {
+        System.out.println("?");
+    }
+
 }
